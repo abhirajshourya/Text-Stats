@@ -38,9 +38,11 @@ export default function TextForm(props) {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi veritatis quia minus laboriosam quaerat debitis harum quibusdam, voluptas et, laudantium omnis. Ex cupiditate dolores quisquam ducimus officiis voluptatum quod adipisci, recusandae obcaecati totam saepe atque, est ullam ipsa minima. Odit ab praesentium maiores autem, iusto ducimus exercitationem incidunt aut cupiditate neque est iste placeat blanditiis odio, enim libero quae id quod dolorem? Omnis architecto, non eveniet quis earum itaque facere quaerat cupiditate quo iure rerum quasi? Esse quos quam, pariatur excepturi voluptates accusamus minima ut? Minus, earum. Provident libero exercitationem a ipsum laboriosam voluptates ratione aliquid obcaecati cupiditate adipisci ab laborum quos placeat voluptate numquam tempora magnam quod facere veritatis, nihil blanditiis voluptatum!"
     );
 
+    let mystyle={color: props.mode==='light'?'black':'white'}
+
     return (
         <>
-            <div className="container" style={{color: props.mode==='light'?'black':'white'}}>
+            <div className="container" style={mystyle}>
                 <div className="mb-3">
                     <h2>
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">
@@ -56,26 +58,26 @@ export default function TextForm(props) {
                         style = {{backgroundColor: props.mode==='light'?'white':'#0a1424',color: props.mode==='light'?'black':'white'}}
                     ></textarea>
                 </div>
-                <button className="btn-primary btn m-2" onClick={handleUpClick}>
+                <button disabled={text.length===0} className="btn-primary btn m-2" onClick={handleUpClick}>
                     UpperCase
                 </button>
-                <button className="btn-primary btn m-2" onClick={handleLowClick}>
+                <button disabled={text.length===0} className="btn-primary btn m-2" onClick={handleLowClick}>
                     LowerCase
                 </button>
-                <button className="btn-primary btn m-2" onClick={handleTitClick}>
+                <button disabled={text.length===0} className="btn-primary btn m-2" onClick={handleTitClick}>
                     TitleCase
                 </button>
-                <button className="btn-primary btn m-2" onClick={handleClearClick}>
+                <button disabled={text.length===0} className="btn-primary btn m-2" onClick={handleClearClick}>
                     Clear Text
                 </button>
             </div>
 
-            <div className="container m-2">
-                <h2 style={{color: props.mode==='light'?'black':'white'}}>Text Summary</h2>
-                <p style={{color: props.mode==='light'?'black':'white'}}>{text.split(" ").length} Words</p>
-                <p style={{color: props.mode==='light'?'black':'white'}}>{text.length} Characters</p>
-                <p style={{color: props.mode==='light'?'black':'white'}}>{(text.split(" ").length * 60) / 125} Seconds Read</p>
-                <h3 style={{color: props.mode==='light'?'black':'white'}}>Preview</h3>
+            <div className="container m-2" style={mystyle}>
+                <h2 >Text Summary</h2>
+                <p >{text.split(" ").filter((element)=>{return element.length!==0}).length} Words</p>
+                <p >{text.length} Characters</p>
+                <p >{(text.split(" ").filter((element)=>{return element.length!==0}).length * 60) / 125} Seconds Read</p>
+                <h3 >Preview</h3>
                 <p style={{ border: "1px solid grey", padding: "20px",color: props.mode==='light'?'black':'white' }}>{text.length>0?text:"Enter to preview"}</p>
             </div>
         </>

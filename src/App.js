@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
-import { render } from "react-dom";
+// import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 500);
+    }, 1500);
   };
 
   const toggleMode = () => {
@@ -39,7 +39,7 @@ function App() {
       <BrowserRouter>
 
         <Navbar title="Text Stats" aboutText="About" mode={mode} toggleMode={toggleMode} />
-
+        <Alert alert={alert}/>
         <div className="container my-3">
 
         <Routes>
